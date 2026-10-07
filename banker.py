@@ -656,7 +656,7 @@ def monopoly_game(client: Client = None, cmd: str = None) -> None:
             client.num_rolls += 1
             ret_val = mply.process_roll(client.num_rolls, dice)
             if ret_val.startswith("player_choice"):
-                ret_val.replace("player_choice", "")
+                ret_val = ret_val.replace("player_choice", "")
                 client.can_roll = False
             net.send_notif(client.socket, ret_val, "MPLY:")
         elif action == 'trybuy': #TODO Better handling of locations would be nice. 
