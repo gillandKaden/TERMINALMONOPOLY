@@ -659,12 +659,12 @@ def monopoly_game(client: Client = None, cmd: str = None) -> None:
                 ret_val = ret_val.replace("player_choice", "")
                 client.can_roll = False
             net.send_notif(client.socket, ret_val, "MPLY:")
+            print(client.num_rolls)
+            if dice[0] == dice[1] and client.num_rolls < 3:
+                client.can_roll = True
         elif action == 'trybuy': #TODO Better handling of locations would be nice. 
             mply.buy_logic("banker", "b")
             ret_val = mply.get_gameboard()
-            # Need to check if doubles were rolled, otherwise end the rolling phase
-            if dice[0] != dice[1]:
-                client.can_roll = False
             net.send_notif(client.socket, ret_val, "MPLY:")
         elif action == 'propmgmt': #TODO This is almost complete. Still somewhat buggy.
             try: 
