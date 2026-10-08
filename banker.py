@@ -659,7 +659,6 @@ def monopoly_game(client: Client = None, cmd: str = None) -> None:
                 ret_val = ret_val.replace("player_choice", "")
                 client.can_roll = False
             net.send_notif(client.socket, ret_val, "MPLY:")
-            print(client.num_rolls)
             # ensures player can roll after rolling doubles
             if dice[0] == dice[1] and client.num_rolls < 3:
                 client.can_roll = True
